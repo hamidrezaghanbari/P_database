@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
+use App\Patient;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -76,6 +77,12 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function createPatient($id) {
+        Patient::create([
+           'user_id'=>$id
+        ]);
+    }
+
     public function showRegistrationForm()
     {
         return view('admin_admin.register');
@@ -91,6 +98,8 @@ class RegisterController extends Controller
 
         // login user
         Auth::login($user);
+
+        $this->createPatient($user->id);
 
 //        $user->sendEmailVerificationNotification();
         // instead of above line of code

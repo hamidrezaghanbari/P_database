@@ -34,7 +34,19 @@ class VisitController extends Controller
 
     public function store_visit(Request $request)
     {
-        dd($request->all());
+        // create visit
+        $visit = Visit::create([
+            'date'=>$request->date,
+            'time'=>$request->time,
+            'doctor_id'=>$request->doctor_id,
+            'patient_id'=>auth()->user()->patient()->first()->id,
+            'price' => 2000 // todo change to real price
+        ]);
+
+
+        // redirect
+        session()->flash('success_message', ' کاربر گرامی  '.auth()->user()->name.' زمان ویزیت شما با موفقیت ثبت شد.');
+        return redirect()->route('clinics.index');
     }
 
     /**

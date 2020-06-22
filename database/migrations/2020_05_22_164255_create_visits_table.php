@@ -16,14 +16,15 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
 
-            $table->timestamp('time');
+            $table->string('time');
+            $table->string('date');
             $table->string('price');
 
             // day of week and some other properties
-            $table->string('day_of_week');
-            $table->string('hour');
-            $table->string('min');
-            $table->string('day');
+//            $table->string('day_of_week');
+//            $table->string('hour');
+//            $table->string('min');
+//            $table->string('day');
 
 
             // relation to doctor

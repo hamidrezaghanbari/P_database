@@ -112,6 +112,7 @@
             <li class="nav-item">
                 
                 <button onclick="window.location='<?php echo e(route('site_index')); ?>'" class="btn btn-primary">خانه</button>
+                
             </li>
 
         </ul><!-- nav -->

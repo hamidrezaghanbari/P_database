@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="{{ asset('logo.png') }}">
+    <meta name="theme-color" content="#4285f4" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,12 +36,20 @@
 
 </head>
 <body class="az-body">
+
+
 <div class="az-error-wrapper">
-    @include('admin_admin.messages')
 
     <div class="alert alert-warning">
         تمام اطلاعت این سایت فیک میباشد
     </div>
+
+    @include('admin_admin.messages')
+
+
+    <img style="margin-bottom: 10px;" src="{{ asset('logo.png') }}"/>
+
+
 
     <h2 style="font-family: iransansmedium">@lang('auth.app.name')</h2>
     <h3>پروژه مطب پزشک</h3>

@@ -16,8 +16,8 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('weight');
-            $table->integer('height');
+            $table->integer('weight')->nullable();
+            $table->integer('height')->nullable();
 
             // relation to user
             $table->bigInteger('user_id')->unsigned()->index();

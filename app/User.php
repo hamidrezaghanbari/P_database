@@ -4,13 +4,14 @@ namespace App;
 
 use App\Mail\EmailVerification;
 use App\Mail\ResetPassword;
+use App\Services\Permission\Traits\HasPermissions;
 use App\Services\Traits\MagicallyToken;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, MagicallyToken;
+    use Notifiable, MagicallyToken, HasPermissions;
 
     /**
      * The attributes that are mass assignable.

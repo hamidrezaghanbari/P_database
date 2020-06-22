@@ -112,6 +112,7 @@
             <li class="nav-item">
                 {{--todo change this route to index method--}}
                 <button onclick="window.location='{{ route('site_index') }}'" class="btn btn-primary">خانه</button>
+                {{--<button onclick="window.location='{{ route('site_index') }}'" class="btn btn-success">ویزیت ها</button>--}}
             </li>
 
         </ul><!-- nav -->

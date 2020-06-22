@@ -2,7 +2,41 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'admin_admin.index')->name('index');
+//Route::view('/', 'admin_admin.index')->name('index');
+
+Route::get('/', function() {
+//   auth()->user()->hasPermission('create user');
+   dd(auth()->user()->can('create user'));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/site-index', 'FrontController@site_index')->name('site_index');
 Route::get('/site-sections/${clinic_id}', 'FrontController@site_sections')->name('site_sections');

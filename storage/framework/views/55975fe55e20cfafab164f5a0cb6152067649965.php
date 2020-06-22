@@ -4,6 +4,8 @@
 <head>
 
 
+    <link rel="icon" href="<?php echo e(asset('logo.png')); ?>">
+
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
