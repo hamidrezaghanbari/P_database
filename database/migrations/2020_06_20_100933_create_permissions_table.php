@@ -22,27 +22,18 @@ class CreatePermissionsTable extends Migration
             $table->timestamps();
         });
 
-//        Schema::create('permission_user', function (Blueprint $table) {
-//
-//            $table->bigInteger('permission_id')->unsigned()->index();
-//            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade')->onUpdate('cascade');
-//
-//            $table->bigInteger('user_id')->unsigned()->index();
-//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-//
-//            $table->primary(['permission_id', 'user_id']);
-//        });
-//
-//        Schema::create('role_permission', function (Blueprint $table) {
-//
-//            $table->bigInteger('permission_id')->unsigned()->index();
-//            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade')->onUpdate('cascade');
-//
-//            $table->bigInteger('role_id')->unsigned()->index();
-//            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
-//
-//            $table->primary(['permission_id', 'role_id']);
-//        });
+        Schema::create('permission_user', function (Blueprint $table) {
+
+            $table->bigInteger('permission_id')->unsigned()->index();
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->primary(['permission_id', 'user_id']);
+        });
+
+
     }
 
     /**
@@ -53,7 +44,6 @@ class CreatePermissionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('permissions');
-//        Schema::dropIfExists('role_permission');
-//        Schema::dropIfExists('permission_user');
+        Schema::dropIfExists('permission_user');
     }
 }
