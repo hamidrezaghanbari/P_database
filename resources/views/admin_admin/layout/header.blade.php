@@ -30,8 +30,15 @@
                                     <img src="@if(auth()->user()->avatar == null) {{ asset('frontend_images/user.png') }} @else {{ auth()->user()->avatar  }} @endif" alt="">
                                 </div><!-- az-img-user -->
                                 <h6>{{ auth()->user()->name.' '.auth()->user()->family }}</h6>
-                                {{--todo role permission--}}
-                                <span>role permission</span>
+                                
+                                {{--todo remove auth from bellow code--}}
+                                @auth
+                                    @forelse(auth()->user()->roles as $role)
+                                        <span class="badge badge-primary">{{ $role->persian_name }}</span>
+                                    @empty
+                                        <span class="badge badge-warning">بدون نقش</span>
+                                    @endforelse
+                                @endauth
                             </div><!-- az-header-profile -->
 
 
@@ -46,6 +53,11 @@
                             <a style="direction: rtl" href="{{ route('auth.two.factor.toggle') }}" class="dropdown-item"><i class="typcn typcn-user-outline"></i>اهراز هویت دو مرحله ای</a>
                         @endif
                         <a style="direction: rtl" href="{{ route('profile_form') }}" class="dropdown-item"><i class="typcn typcn-edit"></i>ویرایش پروفایل</a>
+
+                        {{--todo just admin role can show this--}}
+                        <a style="direction: rtl" href="{{ route('roles.index') }}" class="dropdown-item"><i class="typcn typcn-key"></i>نقش ها</a>
+{{--                        <a style="direction: rtl" href="{{ route('permissions.index') }}" class="dropdown-item"><i class="typcn typcn-key-outline"></i>دسترسی ها</a>--}}
+
                         <a style="direction: rtl" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="dropdown-item"><i class="typcn typcn-power-outline"></i>خروج</a>

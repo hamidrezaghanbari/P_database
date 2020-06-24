@@ -128,7 +128,7 @@
         <div class="container">
             <div style="text-align: right" class="az-content-body">
 
-                <div style="display: flex;justify-content: space-between">
+                <div style="text-align: right">
 
                     {{--<button style="padding: 5px;margin-bottom: 20px" type="button" class="btn btn-outline-primary">افزودن کادر درمانی جدید</button>--}}
                     <h2 class="az-content-title"> دارو ها   @if(isset($description))   ( {{ $description }} ) @endif  </h2>

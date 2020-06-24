@@ -10,6 +10,7 @@
 
                     <h2 class="az-content-title">کاربران </h2>
                 </div>
+                @include('admin_admin.messages')
 
 
 
@@ -18,24 +19,31 @@
                     <tr>
                         <th class="wd-15p">عملیات ها</th>
                         <th class="wd-15p">شماره تماس</th>
-                        <th class="wd-15p">سن</th>
+                        <th class="wd-15p">نقش ها</th>
                         <th class="wd-20p">جنسیت</th>
                         <th class="wd-10p">عنوان</th>
                         <th class="wd-25p">نام</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($users) > 0)
-                        @foreach($users as $user)
+                        @forelse($users as $user)
                             <tr>
-
                                 <td>
-                                    <button class="btn btn-primary btn-rounded">بخش ها</button>
-                                    <button class="btn btn-warning btn-rounded">ویرایش</button>
+                                    <button onclick="window.location='{{ route('edit_role_permission_view', ['user'=>$user]) }}'" class="btn btn-primary btn-rounded">ویرایش نقش</button>
+                                    <button onclick="window.location='{{ route('users.edit', ['user'=>$user]) }}'" class="btn btn-warning btn-rounded">ویرایش</button>
                                     <button class="btn btn-danger btn-rounded">حذف</button>
                                 </td>
                                 <td>{{ $user->phone }}</td>
-                                <td>{{ (\Carbon\Carbon::now())->diffInYears($user->date_of_birth) }}</td>
+
+                                <td>
+                                    @forelse($user->roles as $role)
+                                        <span class="badge badge-primary">{{ $role->persian_name }}</span>
+                                    @empty
+                                        <span class="badge badge-warning">بدون نقش</span>
+                                    @endforelse
+                                </td>
+
+{{--                                <td>{{ (\Carbon\Carbon::now())->diffInYears($user->date_of_birth) }}</td>--}}
                                 <td>{{ checkGender($user->sex) }}</td>
                                 @if($user->doctor()->first() != null)
                                     <td>پزشک</td>
@@ -48,12 +56,13 @@
                                 @endif
                                 <td>{{ $user->name.' '.$user->family }}</td>
                             </tr>
-                        @endforeach
-                    @else
-                        <div class="alert alert-primary">
-                            هیچ بخش درمانی ثبت نشده است.
-                        </div>
-                    @endif
+
+                            @empty
+                                <div class="alert alert-primary">
+                                    هیچ بخش درمانی ثبت نشده است.
+                                </div>
+                        @endforelse
+
                     </tbody>
                 </table>
 

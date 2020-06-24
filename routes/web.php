@@ -2,15 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Route::view('/', 'admin_admin.index')->name('index');
 
-Route::get('/', function() {
-//   auth()->user()->hasPermission('create user');
-   dd(auth()->user()->can('create user'));
-});
+Route::view('/', 'admin_admin.index')->name('index');
+
+//Route::get('/', function() {
+////   auth()->user()->hasPermission('create user');
+////   dd(auth()->user()->can('create user'));
+////    auth()->user()->withdrawRoles('admin');
+////    \App\Role::find(1)->givePermissionsTo('create user');
+////    auth()->user()->giveRolesTo('admin');
+////    dd(auth()->user()->can('create user'));
+//    dd(\App\User::with('roles')->get());
+//});
 
 
+Route::get('edit-role-permission/{user}', 'UserController@editRolePermissionView')->name('edit_role_permission_view');
+Route::post('edit-role-permission/{user}', 'UserController@editRolePermission')->name('edit_role_permission');
 
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
 
 
 

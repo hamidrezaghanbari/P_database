@@ -25,7 +25,8 @@ trait HasPermissions
 
     protected function getAllPermissions(array $permissions)
     {
-        return Permission::whereIn('name', $permissions)->get();
+//        dd($permissions[0]);
+        return Permission::whereIn('name', $permissions[0])->get();
     }
 
     public function withdrawPermissions(...$permissions)
@@ -49,6 +50,23 @@ trait HasPermissions
     // check user has permission or not
     public function hasPermission(Permission $permission)
     {
-        return $this->permissions->contains($permission);
+        return $this->hasPermissionsThroughRole($permission) || $this->permissions->contains($permission);
     }
+
+    protected function hasPermissionsThroughRole(Permission $permission)
+    {
+        foreach ($permission->roles as $role) {
+            if ($this->roles->contains($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasPermissionWithName($permission)
+    {
+        return $this->permissions->contains('name', $permission);
+    }
+
 }

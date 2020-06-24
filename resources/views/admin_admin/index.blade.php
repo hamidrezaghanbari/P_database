@@ -14,7 +14,6 @@
 
     <title>@lang('auth.app.name')</title>
 
-
     @include('admin_admin.layout.style_head')
 
     <style>
@@ -41,7 +40,7 @@
 <div class="az-error-wrapper">
 
     <div class="alert alert-warning">
-        تمام اطلاعت این سایت فیک میباشد
+        توجه : تمام اطلاعات این سایت فیک میباشد
     </div>
 
     @include('admin_admin.messages')

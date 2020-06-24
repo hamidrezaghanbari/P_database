@@ -34,4 +34,20 @@ class DatabaseSeeder extends Seeder
             );
         }
     }
-}
+
+
+    protected function createRolePermission()
+    {
+        // create roles
+        // admin
+        // patient
+        // doctor
+        // secretary
+        // hospital admin
+
+        // create permissions
+        // crud doctor
+        // crud section
+        // crud employee
+    }
+ }

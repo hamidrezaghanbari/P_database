@@ -31,7 +31,14 @@
                                 </div><!-- az-img-user -->
                                 <h6><?php echo e(auth()->user()->name.' '.auth()->user()->family); ?></h6>
                                 
-                                <span>role permission</span>
+                                
+                                <?php if(auth()->guard()->check()): ?>
+                                    <?php $__empty_1 = true; $__currentLoopData = auth()->user()->roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <span class="badge badge-primary"><?php echo e($role->persian_name); ?></span>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <span class="badge badge-warning">بدون نقش</span>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div><!-- az-header-profile -->
 
 
@@ -46,6 +53,11 @@
                             <a style="direction: rtl" href="<?php echo e(route('auth.two.factor.toggle')); ?>" class="dropdown-item"><i class="typcn typcn-user-outline"></i>اهراز هویت دو مرحله ای</a>
                         <?php endif; ?>
                         <a style="direction: rtl" href="<?php echo e(route('profile_form')); ?>" class="dropdown-item"><i class="typcn typcn-edit"></i>ویرایش پروفایل</a>
+
+                        
+                        <a style="direction: rtl" href="<?php echo e(route('roles.index')); ?>" class="dropdown-item"><i class="typcn typcn-key"></i>نقش ها</a>
+
+
                         <a style="direction: rtl" href="<?php echo e(route('logout')); ?>"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="dropdown-item"><i class="typcn typcn-power-outline"></i>خروج</a>

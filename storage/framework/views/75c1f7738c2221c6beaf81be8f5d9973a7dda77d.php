@@ -14,7 +14,6 @@
 
     <title><?php echo app('translator')->get('auth.app.name'); ?></title>
 
-
     <?php echo $__env->make('admin_admin.layout.style_head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <style>
@@ -41,7 +40,7 @@
 <div class="az-error-wrapper">
 
     <div class="alert alert-warning">
-        تمام اطلاعت این سایت فیک میباشد
+        توجه : تمام اطلاعات این سایت فیک میباشد
     </div>
 
     <?php echo $__env->make('admin_admin.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

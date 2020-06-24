@@ -176,8 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // add permission service provider
-//        App\Providers\PermissionProvider::class,
-    ],
+        App\Providers\PermissionProvider::class,
+        ],
 
     /*
     |--------------------------------------------------------------------------

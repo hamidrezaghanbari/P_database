@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::with('roles')->get();
         $title = 'users';
         return view('admin_admin.users.users', ['users'=>$users, 'title'=>$title]);
     }
@@ -61,6 +63,31 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        dd($id);
+    }
+
+    public function editRolePermissionView($user)
+    {
+        $user = User::whereId($user)->first();
+        $title = 'users';
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        $user->load('permissions', 'roles');
+
+        return view('admin_admin.role_permission.role_permission', ['user'=>$user,
+            'title'=>$title, 'roles'=>$roles, 'permissions'=>$permissions]);
+    }
+
+    public function editRolePermission(Request $request, User $user)
+    {
+
+        $user->refreshPermissions($request->permissions);
+        $user->refreshRoles($request->roles);
+
+        // redirect
+        session()->flash('success_message', ' کاربر گرامی  '.$user->name.' تغییر نقش و دسترسی های شما با موفقیت انجام شد ');
+        return redirect()->route('users.index');
     }
 
     /**

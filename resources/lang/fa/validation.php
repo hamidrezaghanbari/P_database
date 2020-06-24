@@ -98,6 +98,7 @@ return array(
     */
     'attributes' => array(
         "name" => "نام",
+        "persian_name" => "نام فارسی",
         "code" => "کد",
         "g-recaptcha-response" => "گزینه من ربات نیستم",
         "number_of_bed" => "تعداد تخت",
